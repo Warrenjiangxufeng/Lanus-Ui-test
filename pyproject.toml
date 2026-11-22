@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lanus-ui-test"
+version = "0.1.0"
+description = "LangGraph-based natural-language UI test execution engine"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.110,<1",
+  "httpx>=0.27,<1",
+  "langgraph>=0.2.60,<2",
+  "openpyxl>=3.1,<4",
+  "pydantic>=2.7,<3",
+  "python-multipart>=0.0.9,<1",
+  "tomli>=2.0; python_version < '3.11'",
+  "uvicorn[standard]>=0.29,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "pytest-cov>=5,<7",
+]
+
+[project.scripts]
+lanus-ui-test = "lanus_ui_test.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
